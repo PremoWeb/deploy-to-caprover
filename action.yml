@@ -19,7 +19,7 @@ inputs:
 
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/premoweb/deploy-to-caprover:latest'
+  image: 'docker://ghcr.io/premoweb/deploy-to-caprover:main'
   env:
     server: ${{ inputs.server }}
     app: ${{ inputs.app }}
