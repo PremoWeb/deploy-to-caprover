@@ -1,0 +1,29 @@
+name: 'Deploy to PremoWeb'
+description: 'Github Action for deploying to PremoWeb Hosting or any host using Caprover.'
+author: 'PremoWeb Internet Services'
+
+inputs:
+  server:
+    description: 'Deployment web address, i.e. https://captain.apps.premoweb.com. $\{{ secrets.CAPROVER_SERVER }}'
+    required: false
+  token:
+    description: 'App Token. Use $\{{ secrets.APP_TOKEN }} for better security.'
+    required: true
+  app:
+    description: 'App name as defined in Caprover. Use $\{{ secrets.APP_NAME }} for better security.'
+    required: true
+  branch:
+    description: 'The Git branch you wish to deploy (default is main)'
+    required: false
+    default: 'main'
+
+runs:
+  using: 'docker'
+  image: 'docker://ghcr.io/premoweb/deploy-to-caprover:main'
+  env:
+    server: ${{ inputs.server }}
+    app: ${{ inputs.app }}
+    token: ${{ inputs.token }}
+    branch: ${{ inputs.branch }}
+
+
